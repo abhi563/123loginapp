@@ -3,6 +3,7 @@ package com.example.basicloginapp;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,32 +31,43 @@ public class MainActivity extends AppCompatActivity {
         btsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etUsername.getText().toString().equals("admin")) {
-                    boolean admin;
-                    admin = etPassword.getText().toString().equals("admin");
+                if (etUsername.getText().toString().equals(etPassword.getText().toString())) {
+                    
+                    Intent submitIntent = new Intent(MainActivity.this,Activity2.class);
+                    startActivity(submitIntent);
+                    finish();
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                         MainActivity.this
-                );
-                builder.setIcon(R.drawable.ab_check);
-                builder.setTitle("Login Successfully !!!");
-                builder.setMessage("Welcome...");
+                else 
+                {
+                    Toast.makeText(getApplicationContext(),"password and username dosent match", Toast.LENGTH_SHORT).show();
+                }
+                //AlertDialog.Builder builder = new AlertDialog.Builder(
+                  //       MainActivity.this
+                //);
 
-                builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
+               // builder.setIcon(R.drawable.ab_check);
+               // builder.setTitle("Login Successfully !!!");
+                //builder.setMessage("Welcome...");
 
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                //builder.setNegativeButton("YES", new DialogInterface.OnClickListener()
+                //{
+                  //  @Override
+                    //public void onClick(DialogInterface dialog, int i) {
+                      //  dialog.cancel();
+
+
+
+
+                //    }
+                //});
+                //AlertDialog alertDialog = builder.create();
+                //alertDialog.show();
+
+
 
             }
-            {
-                 Toast.makeText(getApplicationContext(),
-                         "Invalid Username & Password",Toast.LENGTH_SHORT).show();
-            }
+           
+            
 
 
             });
